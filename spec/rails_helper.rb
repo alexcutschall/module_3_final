@@ -56,3 +56,21 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+RSpec.configure do |c|
+	c.before(:each) do
+		DatabaseCleaner.clean
+	end
+	c.after(:each) do
+		DatabaseCleaner.clean
+	end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+
+    with.library :active_record
+    with.library :rails
+  end
+end
