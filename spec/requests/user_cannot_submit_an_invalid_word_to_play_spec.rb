@@ -1,4 +1,4 @@
-require 'rails_helpers'
+require 'rails_helper'
 
 describe 'as a user' do
   context 'when they post to a play' do
@@ -15,8 +15,8 @@ describe 'as a user' do
         }
 
         post "/api/v1/games/#{game.id}/plays", params: params
-
-        expect(message).to eq("foxez is not a valid word.")
+        information = JSON.parse(response.body, symbolize_names: true)
+        expect(information[:message]).to eq("'foxez' is not a valid word.")
       end
     end
   end

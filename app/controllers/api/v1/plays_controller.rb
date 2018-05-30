@@ -2,12 +2,16 @@ module Api
   module V1
     class PlaysController < ApplicationController
       def create
-        binding.pry
         game = Game.find(params[:game_id])
-        play = game.plays.create(user_id: params[:player_id], word: params[:word])
-        game.save
-
-        redirect_to root_path
+        word = params[:word]
+        begin
+          WordSearch.new(params[:word]).validate
+          game.plays.create(user_id: params[:player_id], word: word)
+          game.save
+          render status: 201
+        rescue
+          render json: ({"message": "'#{word}' is not a valid word."})
+        end
       end
     end
   end
