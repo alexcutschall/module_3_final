@@ -24,6 +24,6 @@ class WordSearchService
   end
 
   def parsed_request
-    JSON.parse(request, symbolize_names: true)
+    JSON.parse(request, symbolize_names: true)[:results].first[:lexicalEntries].first
   end
 end

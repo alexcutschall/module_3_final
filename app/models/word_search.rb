@@ -4,8 +4,7 @@ class WordSearch
   end
 
   def validate
-    binding.pry
-    request
+    Word.new(request)
   end
 
   private
