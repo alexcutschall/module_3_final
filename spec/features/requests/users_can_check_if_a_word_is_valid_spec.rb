@@ -14,10 +14,10 @@ describe 'as a guest user' do
       it "tells them if the word is invalid" do
         visit '/'
 
-        fill_in 'q', with: 'foxes'
+        fill_in 'q', with: 'foxez'
         click_on 'Validate Word'
 
-        expect(page).to have_content("'foxes' is a valid word and its root form is 'fox'.")
+        expect(page).to have_content("'foxez' is not a valid word.")
       end
     end
   end
