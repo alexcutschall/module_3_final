@@ -3,7 +3,6 @@ module Api
     class GamesController < ApplicationController
       def show
         @game = Game.find(params[:id])
-        binding.pry
         render json: @game
       end
     end
