@@ -11,25 +11,12 @@ describe 'as an unregistered user' do
 
       get "/api/v1/games/#{game.id}"
 
-      game = JSON.parse(response.body)
-
-      expect(game).to eq(as_json)
+      information = JSON.parse(response.body, symbolize_names: true)
+      binding.pry
+      expect(information[:game_id]).to eq(game.id)
+      expect(information[:scores].first).to eq(score_1)
+      expect(information[:scores].second).to eq(score_2)
+      expect(information[:scores].third).to eq(score_3)
     end
   end
-end
-
-def as_json
-  {
-    "game_id":1,
-    "scores": [
-      {
-        "user_id":1,
-        "score":15
-      },
-      {
-        "user_id":2,
-        "score":16
-      }
-    ]
-  }
 end
