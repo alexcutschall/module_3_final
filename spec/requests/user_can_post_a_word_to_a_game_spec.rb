@@ -8,12 +8,12 @@ describe 'as a user' do
       score_1 = create(:play, game: game, user: player_1, word: "hello")
       word = "at"
 
-      headers = {
+      params = {
         "player_id" => player_2.id,
         "word" => word
       }
 
-      post "/api/v1/games/#{game.id}/plays", headers: headers
+      post "/api/v1/games/#{game.id}/plays", params: params
 
       expect(response).to eq(201)
 
