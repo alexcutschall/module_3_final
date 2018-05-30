@@ -5,7 +5,15 @@ describe 'as a guest user' do
     feature 'and they enter in a word' do
       it "tells them if the word is valid and the root word" do
         visit '/'
-        
+
+        fill_in 'q', with: 'foxes'
+        click_on 'Validate Word'
+
+        expect(page).to have_content("'foxes' is a valid word and its root form is 'fox'.")
+      end
+      it "tells them if the word is invalid" do
+        visit '/'
+
         fill_in 'q', with: 'foxes'
         click_on 'Validate Word'
 
