@@ -1,1 +1,3 @@
-<%= @word_result %>
+<%= present(@search) do |search| %>
+  <%= search.result %>
+<% end %>

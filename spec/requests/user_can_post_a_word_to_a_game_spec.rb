@@ -14,13 +14,12 @@ describe 'as a user' do
       }
 
       post "/api/v1/games/#{game.id}/plays", params: params
+      expect(response.status).to eq(201)
 
-      expect(response).to eq(201)
-
-      get "/api/v1/games/#{game_id}"
+      get "/api/v1/games/#{game.id}"
 
       game_information = JSON.parse(response.body, symbolize_names: true)
-      expect(game[:game_id]).to eq(game.id)
+      expect(game_information[:game_id]).to eq(game.id)
     end
   end
 end
