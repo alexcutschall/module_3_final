@@ -6,5 +6,4 @@ class Word
     @text = information[:text]
     @root = information[:inflectionOf].first[:id]
   end
-
 end

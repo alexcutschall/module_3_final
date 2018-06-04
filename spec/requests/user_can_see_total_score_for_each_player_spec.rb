@@ -13,8 +13,10 @@ describe 'as a user' do
       get "/api/v1/games/#{game.id}"
 
       game_information = JSON.parse(response.body, symbolize_names: true)
-      expect(game_information[:player_1_score]).to eq(14)
-      expect(game_information[:player_2_score]).to eq(34)
+      expect(game_information[:scores].first[:user_id]).to eq(player_1.id)
+      expect(game_information[:scores][1][:user_id]).to eq(player_2.id)
+      expect(game_information[:scores].first[:score]).to eq(14)
+      expect(game_information[:scores][1][:score]).to eq(34)
     end
   end
 end

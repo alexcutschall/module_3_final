@@ -1,5 +1,5 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :game_id, :player_1_score, :player_2_score
+  attributes :game_id
   has_many :scores
 
   def player_1_score
@@ -25,6 +25,7 @@ class GameSerializer < ActiveModel::Serializer
   end
 
   def scores
-    object.plays
+    [{"user_id" => object.player_1_id, "score" => player_1_score},
+    {"user_id" => object.player_2_id, "score" => player_2_score}]
   end
 end
