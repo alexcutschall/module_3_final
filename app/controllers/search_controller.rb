@@ -2,10 +2,10 @@ class SearchController < ApplicationController
   def show
     word = params[:q]
     begin
-      searched_word = WordSearch.new(word).validate
-      @word_result = "'#{searched_word.text}' is a valid word and its root form is '#{searched_word.root}'."
+      word_result = WordSearch.new(word).validate
+      @search = Search.new(word_result)
     rescue
-      @word_result = "'#{word}' is not a valid word."
+      @search = Search.new(word)
     end
   end
 end
